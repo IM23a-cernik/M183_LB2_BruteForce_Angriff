@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ## Ausgabe
 
 * Jede überprüfte Kombination wird geloggt
-* Wenn das Passwort gefunden wird, wird eine Datei `pwd.txt` mit dem gefundenen Passwort erstellt.
+* Wenn das Passwort gefunden wird, wird eine Datei `pwd.txt` mit dem gefundenen Passwort erstellt, sowie auch im jewwiligen Logfile angegeben.
 
 ---
 
