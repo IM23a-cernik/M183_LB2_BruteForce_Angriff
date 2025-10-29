@@ -9,13 +9,16 @@ def run_instance(start_char):
 
 if __name__ == "__main__":
     instances = int(input("Number of instances: "))
-    chars = string.ascii_letters + string.digits + string.punctuation
+    turkish = "çğıöşüÇĞİÖŞÜ"
+    cyrillic_upper = "".join(chr(cp) for cp in range(0x0410, 0x042F + 1))
+    cyrillic_lower = "".join(chr(cp) for cp in range(0x0430, 0x044F + 1))
+    cyrillic = cyrillic_upper + cyrillic_lower
+    chars = string.ascii_letters + string.digits + string.punctuation + turkish + cyrillic
     if instances == 1:
         skip = 1
     else:
-        skip = 92 // (instances - 1)
-
+        skip = (len(chars) - 1) // (instances - 1)
     for i in range(instances):
         index = round(i * skip)
         start_char = chars[index]
-        Process(target=run_instance, args=(start_char,)).start()
+        Process(target=run_instance, args=start_char).start()
