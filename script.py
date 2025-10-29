@@ -26,7 +26,7 @@ def main():
                         try:
                             combination = first_char + "".join(rest)
                             payload = {
-                                "email": "test@brute.ch",
+                                "email": "test@easy.ch",
                                 "password": combination,
                             }
                             response = session.post("https://serverapp-afb1a71b45e2.herokuapp.com/login", json=payload, timeout=5)
