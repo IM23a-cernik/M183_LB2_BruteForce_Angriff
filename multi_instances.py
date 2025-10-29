@@ -1,3 +1,6 @@
+"""
+Launches multiple subprocesses of script.py with different characters
+"""
 import os
 import string
 import subprocess
@@ -6,6 +9,11 @@ from multiprocessing import Process
 
 
 def run_instance(start_char):
+    """
+    Launches a subprocess with the character
+    :param start_char:
+    :return:
+    """
     with open(f"output_{start_char}.log", "w", encoding="utf-8") as log:
         subprocess.Popen([sys.executable, "script.py", start_char],
                          stdout=log, stderr=log)

