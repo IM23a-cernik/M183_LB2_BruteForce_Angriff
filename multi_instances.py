@@ -3,9 +3,12 @@ import subprocess
 import sys
 from multiprocessing import Process
 
+
 def run_instance(start_char):
-    subprocess.Popen([sys.executable, "script.py", start_char],
-                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    with open(f"output_{start_char}.log", "w", encoding="utf-8") as log:
+        subprocess.Popen([sys.executable, "script.py", start_char],
+                         stdout=log, stderr=log)
+
 
 if __name__ == "__main__":
     instances = int(input("Number of instances: "))
@@ -21,4 +24,4 @@ if __name__ == "__main__":
     for i in range(instances):
         index = round(i * skip)
         start_char = chars[index]
-        Process(target=run_instance, args=start_char).start()
+        Process(target=run_instance, args=(start_char,)).start()

