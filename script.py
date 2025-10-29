@@ -7,13 +7,16 @@ import requests
 
 def main():
     start_char = sys.argv[1]
+
     password_length = 10
     min_length = 10
+
     turkish = "çğıöşüÇĞİÖŞÜ"
     cyrillic_upper = "".join(chr(cp) for cp in range(0x0410, 0x042F + 1))
     cyrillic_lower = "".join(chr(cp) for cp in range(0x0430, 0x044F + 1))
     cyrillic = cyrillic_upper + cyrillic_lower
     chars = string.ascii_letters + string.digits + string.punctuation + turkish + cyrillic
+
     index = chars.index(start_char)
     rotated = chars[index:] + chars[:index]
     session = requests.Session()
